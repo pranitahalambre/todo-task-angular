@@ -1,0 +1,76 @@
+
+<div class="row">
+
+    <!-- LEFT SIDE -->
+    <div class="col-md-6">
+
+        <h1 *ngIf="!isInEditMode">
+            Add Todos
+        </h1>
+
+        <div class="form-group mb-3">
+            <label for="todoItem">Todo Item</label>
+
+            <input #todoItem
+            (keyup)="onSearch($event)"
+            type="text" class="form-control mt-3">
+        </div>
+
+        <div>
+            <button
+            *ngIf="!isInEditMode"
+            (click)="onTodoAdd(todoItem)"
+            class="btn-block mt-0 mb-3"
+            mat-raised-button color="primary">Add Todo</button>
+        </div>
+
+        <div>
+            <button
+            *ngIf="isInEditMode"
+            (click)="onTodoUpdate()"
+            class="btn-block mt-0 mb-3"
+            mat-raised-button color="primary">Update Todo</button>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="col-md-6 mb-3">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Todo Item</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let todo of todosArr; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{todo.todoItem}}</td>
+
+                    <td class="text-center">
+                        <button
+                        (click)="onEdit(todo)"
+                        mat-mini-fab color="primary">
+                        <mat-icon>edit</mat-icon></button>
+                    </td>
+
+                     <td class="text-center">
+                <button
+                type="button"
+                mat-mini-fab
+                color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
