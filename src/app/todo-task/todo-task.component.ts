@@ -60,6 +60,13 @@ export class TodosComponent implements OnInit {
     this.todoItem.nativeElement.value = todo.todoItem;
   }
 
+  onRemove(todoId : number){
+     let getConfirm = confirm(`Are you sure, you want to remove todo with id ${todoId}`)
+    if(getConfirm){
+      let getIndex=this.todosArr.findIndex(t => t.todoId === todoId)
+      this.todosArr.splice(getIndex,1)
+     }
+  }
 
  onSearch(eve: Event): void {
   let val = (eve.target as HTMLInputElement).value;
